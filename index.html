@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      p, h1, h2, h3 {
+        color: white;
+      }
+      body {
+        background-color: SlateGray;
+      }
+
+      a:link, a:visited {
+        color: orange;
+        background-color: transparent;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover, a:active {
+        color: rgb(230, 108, 25);
+        background-color: transparent;
+        text-decoration: underline;
+      }
+
+      table {
+        border: 2px solid rgb(230, 108, 25);
+        border-collapse: collapse;
+        padding: 5px;
+        color: white;
+      }
+      th, td {
+        border: 1px solid rgb(230, 108, 25);
+        border-collapse: collapse;
+        padding: 5px;
+      }
+      table.center {
+        margin-left: auto; 
+        margin-right: auto;
+    }
+    </style>
+
+    <title>SatsSpend - Australian Bitcoin Business List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha384-VzLXTJGPSyTLX6d96AxgkKvE/LRb7ECGyTxuwtpjHnVWVZs2gp5RDjeM/tgBnVdM"
+      crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="src/leaflet-search.css">
+  </head>
+
+  <body>
+    <div style="padding: 10px; border: 2px solid rgb(230, 108, 25)">
+      <center><h1>SatsSpend - Australian Bitcoin Business List</h1></center>
+    </div>
+    
+    <br />
+    <div style="padding: 10px; border: 2px solid rgb(230, 108, 25)">
+        <div style="float: left; padding-top: 5px">
+            <img src="images/bitcoin-logo.png">
+        </div>
+              
+        <div style="padding-left: 245px;">
+          <p><b>SatsSpend</b> is a list of Australian businesses that accept bitcoin.</p>
+          <p>Our aim is to encourage a circular economy in which Aussie bitcoiners can more easily spend their sats (and so bitcoin businesses get the support they deserve).</p>
+
+          <p>This list is <u>not</u> intended for bitcoin exchanges or third-party payment processors (e.g., to get paid in bitcoin or pay bills in bitcoin). There are already numerous lists of such intermediate businesses.</p>
+
+          <p>To add a business, contact me on <a href="https://twitter.com/mission_bitcoin" target="blank">Twitter (@mission_bitcoin)</a> or submit a pull request on the <a href="https://github.com/Daunus/SatsSpend" target="blank">SatsSpend Github page</a>.</p>
+          <p><b>Last updated:</b> 8 July 2022</p>
+          <p><b>Sponsored by</b> <a href="https://hardblock.com.au">HardBlock Australian Bitcoin Exchange</a></p>
+        </div>
+    </div>
+    
+    <br />
+    <center>
+    <div style="padding-left: 4%; padding-right: 4%;">
+      <div
+        id="map"
+        style="height: 700px; border: 2px solid rgb(230, 108, 25)">
+      </div>
+    </div>
+    </center>
+  
+  <br />  
+  <div style="padding: 10px; border: 2px solid rgb(230, 108, 25)">
+    <div>
+      <div>
+        <br>
+        <font color="orange"><b>Search:</b></font> <input style="width: 300px; height: 28px" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="search type, name, location, etc" title="Search">
+      </div>
+    
+      <br><br>
+      <div>
+        <table id="searchableTable" class="center">
+        <tr>
+          <td><center><b>Type </center></b></td>
+          <td><center><b>Name </center></b></td>
+          <td><center><b>Location </center></b></td>
+          <td><center><b>Lightning </center></b></td>
+          <td><center><b>Comments </center></b></td>
+        </tr>
+        <tr>
+          <td>Clothing & Jewellery</td>
+          <td>Esmira</td>
+          <td>
+            <u>2 Locations:</u>
+            <br />- 12 Jacksons Road, Warriewood NSW, 2102 <br />- 197-215 Condamine Street, Balgowlah NSW, 2093
+          </td>
+          <td><center>Yes</center></td>
+          <td>Clothing, jewellery, and homewares</td>
+        </tr>
+        <tr>
+          <td>Cabinetry</td>
+          <td>Hessell Property Group</td>
+          <td>North Narrabeen NSW, 2101 <br />0432 434 844</td>
+          <td><center>Yes</center></td>
+          <td>Custom kitchens and cabinets</td>
+        </tr>
+        <tr>
+          <td>Pet Supplies</td>
+          <td>Pet Parlour</td>
+          <td>1B, 35 Stennett Rd, Ingleburn NSW, 2565
+            <br />https://petparlour.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Luxury pet products (eg, orthopedic dog beds)</td>
+        </tr>
+        <tr>
+          <td>Medical Clinic</td>
+          <td>Tamworth Heart Clinic</td>
+          <td>40 Piper Street, Tamworth NSW, 2340
+            <br />(02) 6766 3299
+          </td>
+          <td><center>No</center></td>
+          <td>Medical clinic specialising in heart conditions</td>
+        </tr>
+        <tr>
+          <td>Accommodation & Outdoor Activities</td>
+          <td>Tweed Billabong Holiday Park</td>
+          <td>30 Holden Street, Tweed Heads South NSW, 2486
+            <br />https://tweedbillabong.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Holiday and amusement park</td>
+        </tr>
+
+        <tr>
+          <td>Computers</td>
+          <td>Another World Computer Centre</td>
+          <td>429 Sydney Road, Coburg VIC, 3058
+            <br />https://anotherworld.com.au/
+          </td>
+          <td><center>Yes</center></td>
+          <td>Computers, parts, and repairs</td>
+        </tr>
+        <tr>
+          <td>Bicycles</td>
+          <td>Bike Factory Outlet</td>
+          <td>92-92 Inkerman Street, St Kilda VIC, 3182
+            <br />https://www.bikefo.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Bicycles, parts, tools, and accessories</td>
+        </tr>
+        <tr>
+          <td>Drones</td>
+          <td>Dream Vision Sound</td>
+          <td>4 Silverton Drive, Ferntree Gully VIC, 3156
+            <br />https://dreamvisionsound.com/
+          </td>
+          <td><center>?</center></td>
+          <td>DJI drone sales, repairs, and services</td>
+        </tr>
+        <tr>
+          <td>Restaurant</td>
+          <td>Giuseppe's Pizza</td>
+          <td>
+            <u>2 Locations:</u>
+            <br />- 92 Wilsons Road, Mornington VIC, 3931 <br />- Shop 3, 2432 Frankston-Flinders Road, Bittern VIC, 3918
+            <br />https://giuseppespizza.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Pizza restaurant. Ask the owner for bitcoin payments</td>
+        </tr>
+        <tr>
+          <td>Mini-golf & Bar</td>
+          <td>Glow Golf</td>
+          <td>Level 1, Shop 35 Star Cres, District Docklands Shops, Docklands VIC, 3008
+            <br />http://glowgolf.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Glow-in-the-dark black light mini-golf and bar</td>
+        </tr>
+        <tr>
+          <td>Accommodation</td>
+          <td>Marc's AirBnB</td>
+          <td>Kalorama, VIC
+            <br />https://airbnb.com.au/rooms/592050871156761438
+          </td>
+          <td><center>Yes</center></td>
+          <td>AirBnB, contact Marc directly: marcfour@protonmail.com</td>
+        </tr>
+        <tr>
+          <td>Groceries</td>
+          <td>USA Foods</td>
+          <td>67-73 Cochranes Road, Moorabbin VIC, 3189
+            <br />https://usafoods.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>All-American grocery store (in Australia!)</td>
+        </tr>
+    
+        <tr>
+          <td>Barber</td>
+          <td>Encrypted Barber</td>
+          <td>1A Union Street, Adelaide SA, 5000
+            <br />https://encryptedbarber.com/
+          </td>
+          <td><center>Only</center></td>
+          <td>Barber specialising in men's cuts</td>
+        </tr>
+        <tr>
+          <td>Winery</td>
+          <td>Talunga Estate</td>
+          <td>198D Torrens Valley Road, Gumeracha SA, 5233
+            <br />https://talungaestate.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Winery and function venue</td>
+        </tr>
+        <tr>
+          <td>Bar</td>
+          <td>The Little Red Door</td>
+          <td>182B Hindley Street, Adelaide SA, 5000
+            <br />https://littlereddoor.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Bar and function venue. Ask the owner for bitcoin payments</td>
+        </tr>
+    
+        <tr>
+          <td>Cafe</td>
+          <td>Codie's Place</td>
+          <td>7 Agnes Street, Agnes Water QLD, 4677
+            <br />https://codiesplace.com/
+          </td>
+          <td><center>Yes</center></td>
+          <td>Coffee shop</td>
+        </tr>
+        <tr>
+          <td>Cafe</td>
+          <td>Crypto Coffee</td>
+          <td>572 Brunswick Street, New Farm QLD, 4005
+            <br />https://instagram.com/cryptocoffeenewfarm/
+          </td>
+          <td><center>No</center></td>
+          <td>Coffee shop</td>
+        </tr>
+        <tr>
+          <td>Cafe</td>
+          <td>Death Star Canteen</td>
+          <td>359 Queen Street, Brisbane City QLD, 4000
+            <br />https://facebook.com/deathstarcanteenbrisbane/
+          </td>
+          <td><center>Yes</center></td>
+          <td>Coffee shop</td>
+        </tr>
+        <tr>
+          <td>Restaurant</td>
+          <td>Drift & Wood</td>
+          <td>40 Captain Cook Drive, Agnes Water QLD, 4677
+            <br />https://driftandwood.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Restaurant and bar</td>
+        </tr>
+        <tr>
+          <td>Health & Fitness</td>
+          <td>Furlani Fitness</td>
+          <td>103 Edward Street, Brisbane City QLD, 4000
+            <br />https://furlanifitness.com.au/
+          </td>
+          <td><center>Yes</center></td>
+          <td>Coaching, nutrition, personal training, and meal-prep service</td>
+        </tr>
+        <tr>
+          <td>Hosted Mining Facility</td>
+          <td>Mineracks</td>
+          <td>Brisbane City, QLD 4000
+              <br>https://mineracks.com/</td>
+          <td><center>?</center></td>
+          <td>Selling ASIC and GPU mining rigs, as well as hosting services located in Brisbane</td>
+        </tr> 	 
+        <tr>
+          <td>Queensland Solar and Lighting</td>
+          <td>Electrician</td>
+          <td>Ipswitch, Gold Coast & Sunshine Coast, Brisbane QLD
+              <br>https://queenslandsolarandlighting.com/</td>
+          <td><center>No</center></td>
+          <td>Solar system and lighting installations</td>
+        </tr>
+        <tr>
+          <td>Restaurant</td>
+          <td>Seagulls Takeaway</td>
+          <td>24 Anzac Parade, Yeppoon QLD, 4703
+            <br />https://facebook.com/seagullsfishandchips/
+          </td>
+          <td><center>?</center></td>
+          <td>Fish and chips takeaway</td>
+        </tr>
+        <tr>
+          <td>Clothing & Barber</td>
+          <td>Urbanna</td>
+          <td>106 Edward Street, Brisbane City QLD, 4000
+            <br />https://urbbana.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Designer jackets, pants, shoes, and barber shop</td>
+        </tr>
+
+        <tr>
+          <td>Accommodation</td>
+          <td>Aiyana Retreat</td>
+          <td>28 Anning Road, Denmark WA, 6333
+            <br />https://aiyanaretreat.com.au/
+          </td>
+          <td><center>No</center></td>
+          <td>Luxury accommodation</td>
+        </tr>
+        <tr>
+          <td>Home Builders</td>
+          <td>Broadwater Builds</td>
+          <td>21A Norman Street, Wembley Downs WA, 6019
+            <br />https://broadwaterbuilds.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Building new homes, extensions, and renovations</td>
+        </tr>
+        <tr>
+          <td>Bar</td>
+          <td>Frisk Small Bar</td>
+          <td>103 Francis Street, Northbridge WA, 6003
+            <br />http://www.frisksmallbar.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Bar specialising in cocktails and gin</td>
+        </tr>
+        <tr>
+          <td>Accommodation, Bar, Restaurant</td>
+          <td>Norfolk Hotel</td>
+          <td>47 South Terrace, Fremantle WA, 6160
+            <br />https://norfolkhotel.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Hotel accommodation, bar, and restaurant</td>
+        </tr>
+        <tr>
+          <td>Baseball Team</td>
+          <td>Perth Heat</td>
+          <td>Empire Ballpark, corner of Nicholson and Wilfred Roads, Thornlie WA, 6108
+            <br />https://perthheat.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Baseball team on a bitcoin standard. Selling merchandise, memberships, and game tickets</td>
+        </tr>
+
+        <tr>
+          <td>Cafe</td>
+          <td>Just Coffee Beans</td>
+          <td><u>2 Locations</u>:
+            <br/>- Nightcliff Markets, 7 Pavonia Place, Nightcliff NT, 0810<br/>- Parap Markets, 3/3 Vickers Street, Parap NT, 0804
+            <br />https://justcoffee.com.au/
+          </td>
+          <td><center>?</center></td>
+          <td>Coffee shop</td>
+        </tr>
+
+        <tr>
+          <td>text</td>
+          <td>text</td>
+          <td>text
+              <br />link
+          </td>
+          <td><center>?</center></td>
+          <td>text</td>
+        </tr>
+        </table>
+    </div>
+  </div>
+
+  <br />
+  <hr style="border-top: 2px dashed Black">
+  <br />
+  <div style="padding: 10px; border: 2px solid rgb(230, 108, 25)">
+    <h2>Useful Projects</h2>
+    <p>
+    <a href="https://btcpayserver.org/" target="blank">BTCPay Server</a> - A free and open source self-hosted cryptocurrency payment processor.
+
+    <br /><br />
+    <a href="https://satsale.org/" target="blank">SatSale</a> - A free and open source self-hosted bitcoin-only payment processor.
+    </p>
+  </div>
+  
+  <br />
+  <div style="padding: 10px; border: 2px solid rgb(230, 108, 25)">
+    <h2>Tax Guidance</h2>
+    <p>To spend bitcoin in Australia without incurring Capital Gains Tax, you would ideally buy and spend your sats in line with the <a href="https://www.ato.gov.au/Individuals/Investments-and-assets/Crypto-asset-investments/Crypto-as-a-personal-use-asset/" target="blank"
+        >ATO's personal use asset guidance</a>.
+
+    <br /><br />For more comprehensive information on the ATO's tax treatment of spending bitcoin, see the ATO guide titled
+      <a href="https://www.ato.gov.au/Individuals/Investments-and-assets/Crypto-asset-investments/Transactions---acquiring-and-disposing-of-crypto-assets/"
+        target="blank">Transactions - acquiring and disposing of crypto assets</a>.</p>
+  </div>
+
+  <br />
+  <div style="padding: 10px; border: 2px solid rgb(230, 108, 25)">
+    <h2>Recommended Spending Wallets</h2>
+    <p><a href="https://phoenix.acinq.co/" target="blank">Phoenix Wallet</a> - iPhone and Android: Bitcoin Lightning wallet (handles on-chain transactions by swapping in/out of Lightning). Free and open source, very user-friendly bitcoin and Lightning integration, unable to connect to own/chosen node.
+
+      <br /><br /><a href="https://bluewallet.io/" target="blank">Blue Wallet</a> - iPhone and Android: Bitcoin on-chain and Lightning wallet. Free and open source, single- and multi-signature, coin control features, batch spending, Tor connectivity, able to connect to own/chosen node.
+
+      <br /><br /><a href="https://samouraiwallet.com/" target="blank">Samourai Wallet</a> - Android only: Bitcoin on-chain privacy-focused wallet. Free and open source, single-signature with passphrase, coinjoin and payjoin transactions, PayNym (BIP47) static stealth addresses, coin control features, batch spending, Tor connectivity. Recommended to use with full node.
+    </p>
+  </div>
+    
+  <br />
+  <script
+    src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha384-RFZC58YeKApoNsIbBxf4z6JJXmh+geBSgkCQXFyh+4tiFSJmJBt+2FbjxW7Ar16M"
+    crossorigin="anonymous"></script>
+  <script src="src/leaflet-search.js"></script>
+    
+  <script>
+  var data = [
+		{"loc":[-33.695808, 151.296021], "name":"Esmira (Location 1)", "type":"Clothing & Jewellery", "url":"", "address":"12 Jacksons Road, Warriewood NSW, 2102"},
+    {"loc":[-33.79315, 151.26431], "name":"Esmira (Location 2)", "type":"Clothing & Jewellery", "url":"", "address":"197-215 Condamine Street, Balgowlah NSW, 2093"},
+		{"loc":[-33.68415, 151.26323], "name":"Hessell Property Group", "type":"Cabinetry", "url":"", "address":"North Narrabeen NSW, 2101 (Ph: 0432 434 844)"},
+		{"loc":[-34.0081032, 150.8469731], "name":"Pet Parlour", "type":"Pet Supplies", "url":"https://petparlour.com.au/", "address":"1B, 35 Stennett Rd, Ingleburn NSW, 2565"},
+		{"loc":[-31.076716, 150.9214128], "name":"Tamworth Heart Clinic", "type":"Medical Clinic", "url":"", "address":"40 Piper Street, Tamworth NSW, 2340 (Ph: (02) 6766 3299)"},
+		{"loc":[-28.195334792202825, 153.52982599720067], "name":"Tweed Billabong Holiday Park", "type":"Accommodation & Outdoor Recreation", "url":"https://tweedbillabong.com.au/", "address":"30 Holden Street, Tweed Heads South NSW, 2486"},
+
+		{"loc":[-34.9228334, 138.6084895], "name":"Encrypted Barber", "type":"Barber", "url":"https://encryptedbarber.com/", "address":"1A Union Street, Adelaide SA, 5000"},
+		{"loc":[-34.8206061, 138.8700848], "name":"Talunga Estate", "type":"Winery", "url":"https://talungaestate.com.au/", "address":"198D Torrens Valley Road, Gumeracha SA, 5233"},
+		{"loc":[-34.9231131, 138.592497], "name":"The Little Red Door", "type":"Bar", "url":"https://littlereddoor.com.au/", "address":"182B Hindley Street, Adelaide SA, 5000"},
+		
+    {"loc":[-12.387622214049236, 130.8505874048019], "name":"Just Coffee Beans (Location 1)", "type":"Cafe", "url":"https://justcoffee.com.au/", "address":"Nightcliff Markets, 7 Pavonia Place, Nightcliff NT, 0810"},
+		{"loc":[-12.431441142216876, 130.84468876242298], "name":"Just Coffee Beans (Location 2)", "type":"Cafe", "url":"https://justcoffee.com.au/", "address":"Parap Markets, 3/3 Vickers Street, Parap NT, 0804"},
+
+		{"loc":[-34.984113385241514, 117.35297229740131], "name":"Aiyana Retreat", "type":"Accommodation", "url":"https://aiyanaretreat.com.au/", "address":"28 Anning Road, Denmark WA, 6333"},
+		{"loc":[-31.918700722453124, 115.76734269730603], "name":"Broadwater Builds", "type":"Builders", "url":"https://broadwaterbuilds.com.au/", "address":"21A Norman Street, Wembley Downs WA, 6019"},
+		{"loc":[-31.946691488979017, 115.85658999730688], "name":"Frisk Small Bar", "type":"Bar", "url":"http://www.frisksmallbar.com.au/", "address":"103 Francis Street, Northbridge WA, 6003"},
+		{"loc":[-32.056937930191935, 115.74947525498266], "name":"Norfolk Hotel", "type":"Accomodation, Bar, Restaurant", "url":"https://norfolkhotel.com.au/", "address":"47 South Terrace, Fremantle WA, 6160"},
+		{"loc":[-32.057281556322785, 115.93604819919948], "name":"Perth Heat", "type":"Baseball Team", "url":"https://perthheat.com.au/", "address":"Empire Ballpark, corner of Nicholson and Wilfred Roads, Thornlie WA, 6108"},
+
+    {"loc":[-37.74316583283536, 144.9659807109847], "name":"Another World Computer Centre", "type":"Computers", "url":"https://anotherworld.com.au/", "address":"429 Sydney Road, Coburg VIC, 3058"},
+		{"loc":[-37.86410065795719, 144.98516512633398], "name":"Bike Factory Outlet", "type":"Bicycles", "url":"https://www.bikefo.com.au/", "address":"92-92 Inkerman Street, St Kilda VIC, 3182"},
+		{"loc":[-37.885581577803435, 145.27878411833638], "name":"Dream Vision Sound", "type":"Drones", "url":"https://dreamvisionsound.com/", "address":"4 Silverton Drive, Ferntree Gully VIC, 3156"},
+		{"loc":[-38.230410257254775, 145.0377856551832], "name":"Giuseppe's Pizza (Location 1)", "type":"Restaurant", "url":"https://giuseppespizza.com.au/", "address":"92 Wilsons Road, Mornington VIC, 3931"},
+		{"loc":[-38.3363727865953, 145.17712099751427], "name":"Giuseppe's Pizza (Location 2)", "type":"Restaurant", "url":"https://giuseppespizza.com.au/", "address":"Shop 3, 2432 Frankston-Flinders Road, Bittern VIC, 3918"},
+		{"loc":[-37.81275904441076, 144.93733279749608], "name":"Glow Golf", "type":"Mini-golf & Bar", "url":"http://glowgolf.com.au/", "address":"Level 1, Shop 35 Star Cres, District Docklands Shopping Center, Docklands VIC, 3008"},
+		{"loc":[-37.81947345031159, 145.37033946248724], "name":"Marc's AirBnB", "type":"Accommodation", "url":"https://airbnb.com.au/rooms/592050871156761438", "address":"Kalorama, VIC (E: marcfour@protonmail.com)"},
+    {"loc":[-37.9432400529109, 145.07239855517312], "name":"USA Foods", "type":"Groceries", "url":"https://usafoods.com.au/", "address":"67-73 Cochranes Road, Moorabbin VIC, 3189"},
+
+    {"loc":[-24.210047773084757, 151.90553016826505], "name":"Codie's Place", "type":"Cafe", "url":"https://codiesplace.com/", "address":"7 Agnes Street, Agnes Water QLD, 4677"},
+		{"loc":[-27.461838543676627, 153.0397956971813], "name":"Crypto Coffee", "type":"Cafe", "url":"https://instagram.com/cryptocoffeenewfarm/", "address":"572 Brunswick Street, New Farm QLD, 4005"},
+		{"loc":[-27.466435785432044, 153.02970499718145], "name":"Death Star Canteen", "type":"Cafe", "url":"https://facebook.com/deathstarcanteenbrisbane/", "address":"359 Queen Street, Brisbane City QLD, 4000"},
+		{"loc":[-24.20882644313388, 151.90279279710128], "name":"Drift & Wood", "type":"Restaurant", "url":"https://driftandwood.com.au/", "address":"40 Captain Cook Drive, Agnes Water QLD, 4677"},
+		{"loc":[-27.470085567832406, 153.02900383950893], "name":"Furlani Fitness", "type":"Health & Fitness", "url":"https://furlanifitness.com.au/", "address":"103 Edward Street, Brisbane City QLD, 4000"},
+		{"loc":[-27.47046551222321, 153.02605239580885], "name":"Mineracks", "type":"Hosted Mining Facility", "url":"https://mineracks.com/", "address":"Brisbane City QLD, 4000"},
+		{"loc":[-27.45, 152.45], "name":"Queensland Solar and Lighting", "type":"Electrician", "url":"https://queenslandsolarandlighting.com/", "address":"Ipswitch, Gold Coast & Sunshine Coast, Brisbane QLD"},
+    {"loc":[-23.131328085968782, 150.74921545474947], "name":"Seagulls Takeaway", "type":"Restaurant", "url":"https://facebook.com/seagullsfishandchips/", "address":"24 Anzac Parade, Yeppoon QLD, 4703"},
+		{"loc":[-27.47039922970285, 153.02864565485413], "name":"Urbbanna", "type":"Clothing & Barber", "url":"https://urbbana.com.au/", "address":"106 Edward Street, Brisbane QLD, 4000"},
+  ];
+
+	var map = new L.map('map', {
+    center: [-27, 133.5],
+    minZoom: 2,
+    zoom: 4,
+  });
+
+  var myIcon = new L.icon({
+    iconUrl: "images/orange-pin.png",
+    iconRetinaUrl: "images/orange-pin.png",
+    iconSize: [60, 50],
+    iconAnchor: [10, 45],
+    popupAnchor: [6, -46],
+  });
+
+  map.addLayer(new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    subdomains: ["a", "b", "c"],
+  }));
+
+	var markersLayer = new L.layerGroup();
+	
+	map.addLayer(markersLayer);
+
+	var controlSearch = new L.Control.Search({
+		position:'topleft',		
+		layer: markersLayer,
+		initial: false,
+		zoom: 15,
+		marker: false
+	});
+
+	map.addControl( controlSearch );
+
+	for(i in data) {
+		var name = data[i].name,
+      type = data[i].type,
+      url = data[i].url,
+      address = data[i].address,
+			loc = data[i].loc,
+			marker = new L.Marker(new L.latLng(loc), {title: [name + ': ' + type + ' @ ' + address], icon: myIcon}).bindPopup(`${
+        url == ""
+          ? `<b>${name}</b>`
+          : `<a href="${url}" target="_blank">${name}</a>`
+      }: ${type} @ ${address}`);
+		markersLayer.addLayer(marker);
+	};
+
+  </script>
+        
+  <script>function searchFunction() {
+    // Declare starting variables
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("searchableTable");
+    var trs = table.tBodies[0].getElementsByTagName("tr");
+    // Loop through rows
+    for (var i = 0; i < trs.length; i++) {
+      // Define the cells
+      var tds = trs[i].getElementsByTagName("td");
+      // hide the rows
+      trs[i].style.display = "none";
+          
+      // loop through row cells 
+      for (var i2 = 0; i2 < tds.length; i2++) {
+      // if there's a match
+        if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        // show the row
+        trs[i].style.display = "";
+        // skip to the next row
+        continue;
+        }
+      }
+    }
+  }
+  </script>
+</body>
+</html>
