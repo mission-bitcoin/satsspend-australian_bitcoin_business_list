@@ -603,6 +603,9 @@
         </tr>
         </table>
     </div>
+    <div id="notfoundmsg" style="display: none">
+      <p>Sorry we couldn't find what you're looking for. <br/>If we're missing something, let us know! Or perhaps you can help make this product or service available for sats!</p>
+    </div>
   </div>
 
   <br />
@@ -744,8 +747,9 @@
     var filter = input.value.toUpperCase();
     var table = document.getElementById("searchableTable");
     var trs = table.tBodies[0].getElementsByTagName("tr");
+    var found_something = false;
     // Loop through rows
-    for (var i = 0; i < trs.length; i++) {
+    for (var i = 1; i < trs.length; i++) {
       // Define the cells
       var tds = trs[i].getElementsByTagName("td");
       // hide the rows
@@ -757,10 +761,17 @@
         if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
         // show the row
         trs[i].style.display = "";
+        found_something = true;
         // skip to the next row
         continue;
         }
       }
+    }
+
+    if (!found_something) {
+      document.getElementById("notfoundmsg").style.display = "";
+    } else {
+      document.getElementById("notfoundmsg").style.display = "none";
     }
   }
   </script>
