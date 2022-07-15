@@ -147,48 +147,46 @@
   <script src="src/leaflet-search.js"></script>
     
   <script>
-  const mapData = [
+  const data = [
     {"loc":[-33.695808, 151.296021], "name":"Esmira (Location 1)", "type":"Clothing & Jewellery", "url":"", "address":"12 Jacksons Road, Warriewood NSW, 2102", "lightning": "<center>Yes</center>", "comments":"Clothing, jewellery, and homewares"},
     {"loc":[-33.79315, 151.26431], "name":"Esmira (Location 2)", "type":"Clothing & Jewellery", "url":"", "address":"197-215 Condamine Street, Balgowlah NSW, 2093", "lightning": "<center>Yes</center>", "comments":"Clothing, jewellery, and homewares"},
-		{"loc":[-33.68415, 151.26323], "name":"Hessell Property Group", "type":"Cabinetry", "url":"", "address":"North Narrabeen NSW, 2101 (Ph: 0432 434 844)", "lightning": "<center>Yes</center>", "comments":"Custom kitchens and cabinets"},
-		{"loc":[-34.0081032, 150.8469731], "name":"Pet Parlour", "type":"Pet Supplies", "url":"https://petparlour.com.au/", "address":"1B, 35 Stennett Rd, Ingleburn NSW, 2565 <br>https://petparlour.com.au  (Australia-wide)", "lightning": "<center>No</center>", "comments":"Luxury pet products (eg, orthopedic dog beds)"},
-		{"loc":[-31.076716, 150.9214128], "name":"Tamworth Heart Clinic", "type":"Medical Clinic", "url":"", "address":"40 Piper Street, Tamworth NSW, 2340 (Ph: (02) 6766 3299)", "lightning": "<center>No</center>", "comments":"Medical clinic specialising in heart conditions"},
-		{"loc":[-28.195334792202825, 153.52982599720067], "name":"Tweed Billabong Holiday Park", "type":"Accommodation & Outdoor Recreation", "url":"https://tweedbillabong.com.au", "address":"30 Holden Street, Tweed Heads South NSW, 2486 <br>https://tweedbillabong.com.au", "lightning": "<center>No</center>", "comments":"Holiday and amusement park"},
+    {"loc":[-33.68415, 151.26323], "name":"Hessell Property Group", "type":"Cabinetry", "url":"", "address":"North Narrabeen NSW, 2101 (Ph: 0432 434 844)", "lightning": "<center>Yes</center>", "comments":"Custom kitchens and cabinets"},
+    {"loc":[-34.0081032, 150.8469731], "name":"Pet Parlour", "type":"Pet Supplies", "url":"https://petparlour.com.au/", "address":"1B, 35 Stennett Rd, Ingleburn NSW, 2565 <br>https://petparlour.com.au  (Australia-wide)", "lightning": "<center>No</center>", "comments":"Luxury pet products (eg, orthopedic dog beds)"},
+    {"loc":[-31.076716, 150.9214128], "name":"Tamworth Heart Clinic", "type":"Medical Clinic", "url":"", "address":"40 Piper Street, Tamworth NSW, 2340 (Ph: (02) 6766 3299)", "lightning": "<center>No</center>", "comments":"Medical clinic specialising in heart conditions"},
+    {"loc":[-28.195334792202825, 153.52982599720067], "name":"Tweed Billabong Holiday Park", "type":"Accommodation & Outdoor Recreation", "url":"https://tweedbillabong.com.au", "address":"30 Holden Street, Tweed Heads South NSW, 2486 <br>https://tweedbillabong.com.au", "lightning": "<center>No</center>", "comments":"Holiday and amusement park"},
 
-		{"loc":[-34.9228334, 138.6084895], "name":"Encrypted Barber", "type":"Barber", "url":"https://encryptedbarber.com/", "address":"1A Union Street, Adelaide SA, 5000 <br>https://encryptedbarber.com", "lightning": "<center>Only</center>", "comments":"Barber specialising in men's cuts"},
-		{"loc":[-34.8206061, 138.8700848], "name":"Talunga Estate", "type":"Winery", "url":"https://talungaestate.com.au/", "address":"198D Torrens Valley Road, Gumeracha SA, 5233 <br>https://talungaestate.com.au", "lightning": "<center>No</center>", "comments":"Winery and function venue"},
-		{"loc":[-34.9231131, 138.592497], "name":"The Little Red Door", "type":"Bar", "url":"https://littlereddoor.com.au/", "address":"182B Hindley Street, Adelaide SA, 5000 <br>https://littlereddoor.com.au", "lightning": "<center>No</center>", "comments":"Bar and function venue. Ask the owner for bitcoin payments"},
+    {"loc":[-34.9228334, 138.6084895], "name":"Encrypted Barber", "type":"Barber", "url":"https://encryptedbarber.com/", "address":"1A Union Street, Adelaide SA, 5000 <br>https://encryptedbarber.com", "lightning": "<center>Only</center>", "comments":"Barber specialising in men's cuts"},
+    {"loc":[-34.8206061, 138.8700848], "name":"Talunga Estate", "type":"Winery", "url":"https://talungaestate.com.au/", "address":"198D Torrens Valley Road, Gumeracha SA, 5233 <br>https://talungaestate.com.au", "lightning": "<center>No</center>", "comments":"Winery and function venue"},
+    {"loc":[-34.9231131, 138.592497], "name":"The Little Red Door", "type":"Bar", "url":"https://littlereddoor.com.au/", "address":"182B Hindley Street, Adelaide SA, 5000 <br>https://littlereddoor.com.au", "lightning": "<center>No</center>", "comments":"Bar and function venue. Ask the owner for bitcoin payments"},
 		
     {"loc":[-12.387622214049236, 130.8505874048019], "name":"Just Coffee Beans (Location 1)", "type":"Cafe", "url":"https://justcoffee.com.au/", "address":"Nightcliff Markets, 7 Pavonia Place, Nightcliff NT, 0810 <br>https://justcoffee.com.au", "lightning": "", "comments":"Coffee shop"},
-		{"loc":[-12.431441142216876, 130.84468876242298], "name":"Just Coffee Beans (Location 2)", "type":"Cafe", "url":"https://justcoffee.com.au/", "address":"Parap Markets, 3/3 Vickers Street, Parap NT, 0804 <br>https://justcoffee.com.au", "lightning": "", "comments":"Coffee shop"},
+    {"loc":[-12.431441142216876, 130.84468876242298], "name":"Just Coffee Beans (Location 2)", "type":"Cafe", "url":"https://justcoffee.com.au/", "address":"Parap Markets, 3/3 Vickers Street, Parap NT, 0804 <br>https://justcoffee.com.au", "lightning": "", "comments":"Coffee shop"},
 
-		{"loc":[-34.984113385241514, 117.35297229740131], "name":"Aiyana Retreat", "type":"Accommodation", "url":"https://aiyanaretreat.com.au/", "address":"28 Anning Road, Denmark WA, 6333 <br>https://aiyanaretreat.com.au", "lightning": "<center>No</center>", "comments":"Luxury accommodation"},
-		{"loc":[-31.918700722453124, 115.76734269730603], "name":"Broadwater Builds", "type":"Builders", "url":"https://broadwaterbuilds.com.au/", "address":"21A Norman Street, Wembley Downs WA, 6019 <br>https://broadwaterbuilds.com.au", "lightning": "", "comments":"Building new homes, extensions, and renovations"},
-		{"loc":[-31.946691488979017, 115.85658999730688], "name":"Frisk Small Bar", "type":"Bar", "url":"http://www.frisksmallbar.com.au/", "address":"103 Francis Street, Northbridge WA, 6003 <br>http://www.frisksmallbar.com.au", "lightning": "", "comments":"Bar specialising in cocktails and gin"},
-		{"loc":[-32.056937930191935, 115.74947525498266], "name":"Norfolk Hotel", "type":"Accomodation, Bar, Restaurant", "url":"https://norfolkhotel.com.au/", "address":"47 South Terrace, Fremantle WA, 6160 <br>https://norfolkhotel.com.au", "lightning": "", "comments":"Hotel accommodation, bar, and restaurant"},
-		{"loc":[-32.057281556322785, 115.93604819919948], "name":"Perth Heat", "type":"Baseball Team", "url":"https://perthheat.com.au/", "address":"Empire Ballpark, corner Nicholson & Wilfred Roads, Thornlie WA, 6108 <br>https://perthheat.com.au", "lightning": "", "comments":"Baseball team on a bitcoin standard. Selling merchandise, memberships, and game tickets"},
+    {"loc":[-34.984113385241514, 117.35297229740131], "name":"Aiyana Retreat", "type":"Accommodation", "url":"https://aiyanaretreat.com.au/", "address":"28 Anning Road, Denmark WA, 6333 <br>https://aiyanaretreat.com.au", "lightning": "<center>No</center>", "comments":"Luxury accommodation"},
+    {"loc":[-31.918700722453124, 115.76734269730603], "name":"Broadwater Builds", "type":"Builders", "url":"https://broadwaterbuilds.com.au/", "address":"21A Norman Street, Wembley Downs WA, 6019 <br>https://broadwaterbuilds.com.au", "lightning": "", "comments":"Building new homes, extensions, and renovations"},
+    {"loc":[-31.946691488979017, 115.85658999730688], "name":"Frisk Small Bar", "type":"Bar", "url":"http://www.frisksmallbar.com.au/", "address":"103 Francis Street, Northbridge WA, 6003 <br>http://www.frisksmallbar.com.au", "lightning": "", "comments":"Bar specialising in cocktails and gin"},
+    {"loc":[-32.056937930191935, 115.74947525498266], "name":"Norfolk Hotel", "type":"Accomodation, Bar, Restaurant", "url":"https://norfolkhotel.com.au/", "address":"47 South Terrace, Fremantle WA, 6160 <br>https://norfolkhotel.com.au", "lightning": "", "comments":"Hotel accommodation, bar, and restaurant"},
+    {"loc":[-32.057281556322785, 115.93604819919948], "name":"Perth Heat", "type":"Baseball Team", "url":"https://perthheat.com.au/", "address":"Empire Ballpark, corner Nicholson & Wilfred Roads, Thornlie WA, 6108 <br>https://perthheat.com.au", "lightning": "", "comments":"Baseball team on a bitcoin standard. Selling merchandise, memberships, and game tickets"},
 
     {"loc":[-37.74316583283536, 144.9659807109847], "name":"Another World Computer Centre", "type":"Computers", "url":"https://anotherworld.com.au/", "address":"429 Sydney Road, Coburg VIC, 3058 <br>https://anotherworld.com.au (Australia-wide)", "lightning": "<center>Yes</center>", "comments":"Computers, parts, and repairs"},
-		{"loc":[-37.86410065795719, 144.98516512633398], "name":"Bike Factory Outlet", "type":"Bicycles", "url":"https://www.bikefo.com.au/", "address":"92-92 Inkerman Street, St Kilda VIC, 3182 <br>https://www.bikefo.com.au (Australia-wide)", "lightning": "", "comments":"Bicycles, parts, tools, and accessories"},
-		{"loc":[-37.885581577803435, 145.27878411833638], "name":"Dream Vision Sound", "type":"Drones", "url":"https://dreamvisionsound.com/", "address":"4 Silverton Drive, Ferntree Gully VIC, 3156 <br>https://dreamvisionsound.com", "lightning": "", "comments":"DJI drone sales, repairs, and services"},
-		{"loc":[-38.230410257254775, 145.0377856551832], "name":"Giuseppe's Pizza (Location 1)", "type":"Restaurant", "url":"https://giuseppespizza.com.au/", "address":"92 Wilsons Road, Mornington VIC, 3931 <br>https://giuseppespizza.com.au", "lightning": "<center>No</center>", "comments":"Pizza restaurant. Ask the owner for bitcoin payments"},
-		{"loc":[-38.3363727865953, 145.17712099751427], "name":"Giuseppe's Pizza (Location 2)", "type":"Restaurant", "url":"https://giuseppespizza.com.au/", "address":"Shop 3, 2432 Frankston-Flinders Road, Bittern VIC, 3918 <br>https://giuseppespizza.com.au", "lightning": "<center>No</center>", "comments":"Pizza restaurant. Ask the owner for bitcoin payments"},
-		{"loc":[-37.81275904441076, 144.93733279749608], "name":"Glow Golf", "type":"Mini-golf & Bar", "url":"http://glowgolf.com.au/", "address":"Level 1, Shop 35 Star Cres, District Docklands Shopping Center, Docklands VIC, 3008 <br>http://glowgolf.com.au", "lightning": "<center>No</center>", "comments":"Glow-in-the-dark black light mini-golf and bar"},
-		{"loc":[-37.81947345031159, 145.37033946248724], "name":"Marc's AirBnB", "type":"Accommodation", "url":"https://airbnb.com.au/rooms/592050871156761438", "address":"Kalorama, VIC (E: marcfour@protonmail.com) <br>https://airbnb.com.au/rooms/592050871156761438", "lightning": "<center>Yes</center>", "comments":"AirBnB, contact Marc directly: marcfour@protonmail.com"},
+    {"loc":[-37.86410065795719, 144.98516512633398], "name":"Bike Factory Outlet", "type":"Bicycles", "url":"https://www.bikefo.com.au/", "address":"92-92 Inkerman Street, St Kilda VIC, 3182 <br>https://www.bikefo.com.au (Australia-wide)", "lightning": "", "comments":"Bicycles, parts, tools, and accessories"},
+    {"loc":[-37.885581577803435, 145.27878411833638], "name":"Dream Vision Sound", "type":"Drones", "url":"https://dreamvisionsound.com/", "address":"4 Silverton Drive, Ferntree Gully VIC, 3156 <br>https://dreamvisionsound.com", "lightning": "", "comments":"DJI drone sales, repairs, and services"},
+    {"loc":[-38.230410257254775, 145.0377856551832], "name":"Giuseppe's Pizza (Location 1)", "type":"Restaurant", "url":"https://giuseppespizza.com.au/", "address":"92 Wilsons Road, Mornington VIC, 3931 <br>https://giuseppespizza.com.au", "lightning": "<center>No</center>", "comments":"Pizza restaurant. Ask the owner for bitcoin payments"},
+    {"loc":[-38.3363727865953, 145.17712099751427], "name":"Giuseppe's Pizza (Location 2)", "type":"Restaurant", "url":"https://giuseppespizza.com.au/", "address":"Shop 3, 2432 Frankston-Flinders Road, Bittern VIC, 3918 <br>https://giuseppespizza.com.au", "lightning": "<center>No</center>", "comments":"Pizza restaurant. Ask the owner for bitcoin payments"},
+    {"loc":[-37.81275904441076, 144.93733279749608], "name":"Glow Golf", "type":"Mini-golf & Bar", "url":"http://glowgolf.com.au/", "address":"Level 1, Shop 35 Star Cres, District Docklands Shopping Center, Docklands VIC, 3008 <br>http://glowgolf.com.au", "lightning": "<center>No</center>", "comments":"Glow-in-the-dark black light mini-golf and bar"},
+    {"loc":[-37.81947345031159, 145.37033946248724], "name":"Marc's AirBnB", "type":"Accommodation", "url":"https://airbnb.com.au/rooms/592050871156761438", "address":"Kalorama, VIC (E: marcfour@protonmail.com) <br>https://airbnb.com.au/rooms/592050871156761438", "lightning": "<center>Yes</center>", "comments":"AirBnB, contact Marc directly: marcfour@protonmail.com"},
     {"loc":[-37.9432400529109, 145.07239855517312], "name":"USA Foods", "type":"Groceries", "url":"https://usafoods.com.au/", "address":"67-73 Cochranes Road, Moorabbin VIC, 3189 <br>https://usafoods.com.au (Australia-wide)", "lightning": "<center>No</center>", "comments":"All-American grocery store (in Australia!)"},
 
     {"loc":[-24.210047773084757, 151.90553016826505], "name":"Codie's Place", "type":"Cafe", "url":"https://codiesplace.com/", "address":"7 Agnes Street, Agnes Water QLD, 4677 <br>https://codiesplace.com", "lightning": "<center>Yes</center>", "comments":"Coffee shop"},
-		{"loc":[-27.461838543676627, 153.0397956971813], "name":"Crypto Coffee", "type":"Cafe", "url":"https://instagram.com/cryptocoffeenewfarm/", "address":"572 Brunswick Street, New Farm QLD, 4005 <br>https://instagram.com/cryptocoffeenewfarm", "lightning": "<center>No</center>", "comments":"Coffee shop"},
-		{"loc":[-27.466435785432044, 153.02970499718145], "name":"Death Star Canteen", "type":"Cafe", "url":"https://facebook.com/deathstarcanteenbrisbane/", "address":"359 Queen Street, Brisbane City QLD, 4000 <br>https://facebook.com/deathstarcanteenbrisbane", "lightning": "<center>Yes</center>", "comments":"Coffee shop"},
-		{"loc":[-24.20882644313388, 151.90279279710128], "name":"Drift & Wood", "type":"Restaurant", "url":"https://driftandwood.com.au/", "address":"40 Captain Cook Drive, Agnes Water QLD, 4677 <br>https://driftandwood.com.au", "lightning": "", "comments":"Restaurant and bar"},
-		{"loc":[-27.470085567832406, 153.02900383950893], "name":"Furlani Fitness", "type":"Health & Fitness", "url":"https://furlanifitness.com.au/", "address":"103 Edward Street, Brisbane City QLD, 4000 <br>https://furlanifitness.com.au", "lightning": "<center>Yes</center>", "comments":"Coaching, nutrition, personal training, and meal-prep service"},
-		{"loc":[-27.47046551222321, 153.02605239580885], "name":"Mineracks", "type":"Hosted Mining Facility", "url":"https://mineracks.com/", "address":"Brisbane City QLD, 4000 <br>https://mineracks.com", "lightning": "", "comments":"Selling ASIC and GPU mining rigs, as well as hosting services located in Brisbane"},
-		{"loc":[-27.45, 152.45], "name":"Queensland Solar and Lighting", "type":"Electrician", "url":"https://queenslandsolarandlighting.com/", "address":"Ipswitch, Gold Coast & Sunshine Coast, Brisbane QLD <br>https://queenslandsolarandlighting.com", "lightning": "<center>No</center>", "comments":"Solar system and lighting installations"},
+    {"loc":[-27.461838543676627, 153.0397956971813], "name":"Crypto Coffee", "type":"Cafe", "url":"https://instagram.com/cryptocoffeenewfarm/", "address":"572 Brunswick Street, New Farm QLD, 4005 <br>https://instagram.com/cryptocoffeenewfarm", "lightning": "<center>No</center>", "comments":"Coffee shop"},
+    {"loc":[-27.466435785432044, 153.02970499718145], "name":"Death Star Canteen", "type":"Cafe", "url":"https://facebook.com/deathstarcanteenbrisbane/", "address":"359 Queen Street, Brisbane City QLD, 4000 <br>https://facebook.com/deathstarcanteenbrisbane", "lightning": "<center>Yes</center>", "comments":"Coffee shop"},
+    {"loc":[-24.20882644313388, 151.90279279710128], "name":"Drift & Wood", "type":"Restaurant", "url":"https://driftandwood.com.au/", "address":"40 Captain Cook Drive, Agnes Water QLD, 4677 <br>https://driftandwood.com.au", "lightning": "", "comments":"Restaurant and bar"},
+    {"loc":[-27.470085567832406, 153.02900383950893], "name":"Furlani Fitness", "type":"Health & Fitness", "url":"https://furlanifitness.com.au/", "address":"103 Edward Street, Brisbane City QLD, 4000 <br>https://furlanifitness.com.au", "lightning": "<center>Yes</center>", "comments":"Coaching, nutrition, personal training, and meal-prep service"},
+    {"loc":[-27.47046551222321, 153.02605239580885], "name":"Mineracks", "type":"Hosted Mining Facility", "url":"https://mineracks.com/", "address":"Brisbane City QLD, 4000 <br>https://mineracks.com", "lightning": "", "comments":"Selling ASIC and GPU mining rigs, as well as hosting services located in Brisbane"},
+    {"loc":[-27.45, 152.45], "name":"Queensland Solar and Lighting", "type":"Electrician", "url":"https://queenslandsolarandlighting.com/", "address":"Ipswitch, Gold Coast & Sunshine Coast, Brisbane QLD <br>https://queenslandsolarandlighting.com", "lightning": "<center>No</center>", "comments":"Solar system and lighting installations"},
     {"loc":[-23.131328085968782, 150.74921545474947], "name":"Seagulls Takeaway", "type":"Restaurant", "url":"https://facebook.com/seagullsfishandchips/", "address":"24 Anzac Parade, Yeppoon QLD, 4703 <br>https://facebook.com/seagullsfishandchips", "lightning": "", "comments":"Fish and chips takeaway"},
-		{"loc":[-27.47039922970285, 153.02864565485413], "name":"Urbbanna", "type":"Clothing & Barber", "url":"https://urbbana.com.au/", "address":"106 Edward Street, Brisbane QLD, 4000 <br>https://urbbana.com.au", "lightning": "", "comments":"Designer jackets, pants, shoes, and barber shop"},
-  ];
+    {"loc":[-27.47039922970285, 153.02864565485413], "name":"Urbbanna", "type":"Clothing & Barber", "url":"https://urbbana.com.au/", "address":"106 Edward Street, Brisbane QLD, 4000 <br>https://urbbana.com.au", "lightning": "", "comments":"Designer jackets, pants, shoes, and barber shop"},
 
-  const onlineShopData = [
     {"type":"Online Training", "name": "Adrian Cantrill", "address": "Australia-wide / Online-only <br>https://learn.cantrill.io", "lightning": "<center>Yes</center>", "comments": "Online training courses covering Amazon Web Services"},
     {"type":"Gift Cards","name": "Bitcoin Gift Cards", "address": "Australia-wide / Online-only <br/>https://bitcoingiftcards.com.au", "lightning": "", "comments": "Buy gift cards with Bitcoin"},
     {"type":"Gift Cards", "name": "Bitswap", "address": "Australia-wide / Online-only <br/>https://bitswap.com.au", "lightning": "<center>Yes</center>", "comments": "Buy gift cards with Bitcoin"},
@@ -250,24 +248,26 @@
 
 	map.addControl(controlSearch);
 
+	const mapData = data.filter(key => key = key.loc);
+	  
 	for(i in mapData) {
-		var name = mapData[i].name,
-      type = mapData[i].type,
-      url = mapData[i].url,
-      address = mapData[i].address,
-			loc = mapData[i].loc,
-			marker = new L.Marker(new L.latLng(loc), {title: [name + ': ' + type + ' @ ' + address], icon: myIcon}).bindPopup(`${
-        url == ""
-          ? `<b>${name}</b>`
-          : `<a href="${url}" target="_blank">${name}</a>`
-      }: ${type} @ ${address}`);
-		markersLayer.addLayer(marker);
+	  var name = mapData[i].name,
+      	  type = mapData[i].type,
+          url = mapData[i].url,
+          address = mapData[i].address,
+	  loc = mapData[i].loc,
+	  marker = new L.Marker(new L.latLng(loc), {title: [name + ': ' + type + ' @ ' + address], icon: myIcon}).bindPopup(`${
+	    url == ""
+            ? `<b>${name}</b>`
+            : `<a href="${url}" target="_blank">${name}</a>`
+            }: ${type} @ ${address}`);
+	  markersLayer.addLayer(marker);
 	};
 
 </script>
 
 <script>
-  const tableData = mapData.map(obj => obj = { Type: obj.type, Name: obj.name, Location: obj.address, Lightning: obj.lightning, Comments: obj.comments }).concat(onlineShopData);
+  const tableData = data.map(obj => obj = {Type: obj.type, Name: obj.name, Location: obj.address, Lightning: obj.lightning, Comments: obj.comments});
 
   window.addEventListener('DOMContentLoaded', () => {
     const thead = document.querySelector("#searchableTable thead");
