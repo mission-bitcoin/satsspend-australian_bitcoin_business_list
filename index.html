@@ -68,7 +68,7 @@
           <p>This list is <u>not</u> intended for bitcoin exchanges or third-party payment processors (e.g., to get paid in bitcoin or pay bills in bitcoin). There are already numerous lists of such intermediate businesses.</p>
 
           <p>To add a business, contact me on <a href="https://twitter.com/mission_bitcoin" target="blank">Twitter (@mission_bitcoin)</a> or submit a pull request on the <a href="https://github.com/mission-bitcoin/satsspend-australian_bitcoin_business_list" target="blank">SatsSpend Github page</a>.</p>
-          <p><b>Last updated:</b> 13 July 2022</p>
+          <p><b>Last updated:</b> 20 July 2022</p>
           <p><b>Sponsored by</b> <a href="https://hardblock.com.au">HardBlock Australian Bitcoin Exchange</a></p>
         </div>
     </div>
@@ -101,7 +101,7 @@
         </table>
     </div>
     <div id="notfoundmsg" style="display: none; color: white">
-      <p><center>Sorry we couldn't find what you were looking for. <br/>If we're missing something, let us know! Or perhaps you can make this product or service available for sats!</center></p>
+      <p><center>Sorry we couldn't find what you were looking for. <br/>If we're missing something, let us know! Or perhaps you can make this product or service available for sats?</center></p>
     </div>
   </div>
 
@@ -187,7 +187,7 @@
     {"loc":[-23.131328085968782, 150.74921545474947], "name":"Seagulls Takeaway", "type":"Restaurant", "url":"https://facebook.com/seagullsfishandchips/", "address":"24 Anzac Parade, Yeppoon QLD, 4703 <br>https://facebook.com/seagullsfishandchips", "lightning": "", "comments":"Fish and chips takeaway"},
     {"loc":[-27.47039922970285, 153.02864565485413], "name":"Urbbanna", "type":"Clothing & Barber", "url":"https://urbbana.com.au/", "address":"106 Edward Street, Brisbane QLD, 4000 <br>https://urbbana.com.au", "lightning": "", "comments":"Designer jackets, pants, shoes, and barber shop"},
 
-    {"type":"Online Training", "name": "Adrian Cantrill", "address": "Australia-wide / Online-only <br>https://learn.cantrill.io", "lightning": "<center>Yes</center>", "comments": "Online training courses covering Amazon Web Services"},
+    {"type":"Training", "name": "Adrian Cantrill", "address": "Australia-wide / Online-only <br>https://learn.cantrill.io", "lightning": "<center>Yes</center>", "comments": "Online training courses covering Amazon Web Services"},
     {"type":"Gift Cards","name": "Bitcoin Gift Cards", "address": "Australia-wide / Online-only <br/>https://bitcoingiftcards.com.au", "lightning": "", "comments": "Buy gift cards with Bitcoin"},
     {"type":"Gift Cards", "name": "Bitswap", "address": "Australia-wide / Online-only <br/>https://bitswap.com.au", "lightning": "<center>Yes</center>", "comments": "Buy gift cards with Bitcoin"},
     {"type":"Bitcoin Support", "name": "Bitcoin Shepherd", "address": "Australia-wide / Online-only <br/>https://thebitcoinshepherd.com", "lightning": "", "comments": "Consulting and support to understand, buy, and self-custody bitcoin"},
@@ -196,6 +196,7 @@
     {"type":"Bitcoin Merchandise", "name": "Coinstop", "address": "Australia-wide / Online-only <br/>https://coinstop.io", "lightning": "", "comments": "Cold storage and hardware wallet reseller (eg, Ledger, Trezor, BitBox02, Ellipal, etc)"},
     {"type":"Clothing", "name": "CultureKings", "address": "Australia-wide / Online-only <br/>https://culturekings.com.au","lightning": "<center>No</center>", "comments": "Clothing (music-, sport-, and stree-twear)"},
     {"type":"Computers", "name": "Dream PC", "address": "Australia-wide / Online-only <br/>https://dreampc.com.au", "lightning": "<center>No</center>", "comments": "Custom computer builds and repairs"},
+    {"type":"Training", "name": "F2FCommunications", "address": "Australia-wide / Online-only <br>http://f2fcommunications.com.au", "lightning": "<center>No</center>", "comments": "Business presentation & communications skills training"},
     {"type":"Games", "name": "Gumnut", "address": "Australia-wide / Online-only <br/>https://gumnut.com.au", "lightning": "<center>No</center>", "comments": "Board games, card games, tabletop games, miniatures, puzzles"},
     {"type":"Bitcoin Clothing / Merchandise", "name": "Koined.Store", "address": "Australia-wide / Online-only <br/>https://koined.store", "lightning": "<center>Yes</center>", "comments": "Bitcoin clothing and other merchandise"},
     {"type":"Accountant", "name": "Kova Tax", "address": "Australia-wide / Online-only <br/>https://kovatax.com.au", "lightning": "", "comments": "Accounting and tax services (including cryptocurrencies)"},
@@ -214,13 +215,13 @@
     {"type":"Coffee Beans", "name": "108 Specialty Coffee", "address":"Australia-wide / Online-only <br/>https://108specialtycoffee.com", "lightning": "", "comments":"Coffee beans and related products"},
   ];
    
-	var map = new L.map('map', {
+ const map = new L.map('map', {
     center: [-27, 133.5],
     minZoom: 2,
     zoom: 4,
   });
 
-  var myIcon = new L.icon({
+  const myIcon = new L.icon({
     iconUrl: "images/orange-pin.png",
     iconRetinaUrl: "images/orange-pin.png",
     iconSize: [60, 50],
@@ -234,11 +235,11 @@
     subdomains: ["a", "b", "c"],
   }));
 
-	var markersLayer = new L.layerGroup();
+	const markersLayer = new L.layerGroup();
 	
 	map.addLayer(markersLayer);
 
-	var controlSearch = new L.Control.Search({
+	const controlSearch = new L.Control.Search({
 		position:'topleft',		
 		layer: markersLayer,
 		initial: false,
@@ -251,7 +252,7 @@
 	const mapData = data.filter(key => key = key.loc);
 	  
 	for(i in mapData) {
-	  var name = mapData[i].name,
+	  const name = mapData[i].name,
       	  type = mapData[i].type,
           url = mapData[i].url,
           address = mapData[i].address,
@@ -286,17 +287,17 @@
 
 <script>
   function searchFunction() {
-    var input = document.getElementById("searchInput");
-    var filter = input.value.toUpperCase();
-    var table = document.getElementById("searchableTable");
-    var trs = table.tBodies[0].getElementsByTagName("tr");
-    var found_something = false;
+    let input = document.getElementById("searchInput"),
+    filter = input.value.toUpperCase(),
+    table = document.getElementById("searchableTable"),
+    trs = table.tBodies[0].getElementsByTagName("tr"),
+    found_something = false;
     
-    for (var i = 0; i < trs.length; i++) {
-      var tds = trs[i].getElementsByTagName("td");
+    for (let i = 0; i < trs.length; i++) {
+      const tds = trs[i].getElementsByTagName("td");
       trs[i].style.display = "none";
           
-      for (var i2 = 0; i2 < tds.length; i2++) {
+      for (let i2 = 0; i2 < tds.length; i2++) {
         if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
         trs[i].style.display = "";
         found_something = true;
