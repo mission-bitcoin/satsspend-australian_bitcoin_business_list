@@ -2,7 +2,7 @@
 
 SatsSpend is a website of Australian businesses that accept bitcoin, including a searchable map and list. There are also some useful resources for spenders and receivers of bitcoin towards the bottom of the page.
 
-Until the site is migrated to its own domain and hosting, it can be accessed here: https://mission-bitcoin.github.io/satsspend-australian_bitcoin_business_list/
+The website can be access here: https://satsspend.com or https://mission-bitcoin.github.io/satsspend-australian_bitcoin_business_list/
 
 
 __________________________________________________________________________________________________________________________________________
