@@ -6,7 +6,8 @@ The website can be access here: https://satsspend.com or https://mission-bitcoin
 
 
 __________________________________________________________________________________________________________________________________________
-**Credit:** 
+**Libraries:** 
+
 - @Leaflet : https://github.com/Leaflet/Leaflet (for leaflet.js and leaflet.css) - BSD 2-Clause License
 - @stefanocudini : https://github.com/stefanocudini/leaflet-search (for leaflet-search.js and leaflet-search.css) - MIT Licence
 
