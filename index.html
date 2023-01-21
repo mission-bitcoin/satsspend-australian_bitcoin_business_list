@@ -69,7 +69,7 @@
 
           <p>To add an Australian business, contact me on <a href="https://twitter.com/mission_bitcoin" target="blank">Twitter (@mission_bitcoin)</a> or submit a pull request on the <a href="https://github.com/mission-bitcoin/satsspend-australian_bitcoin_business_list" target="blank">SatsSpend Github page</a>.</p>
           <p>To see an international list of bitcoin businesses, then check out <a href="https://btcmap.org" target="blank">BTCMap.org</a></p>
-	  <p><b>Last updated:</b> 20 January 2023</p>
+	  <p><b>Last updated:</b> 21 January 2023</p>
           <p><b>Domain and hosting paid for by</b> <a href="https://hardblock.com.au">HardBlock Australian Bitcoin Exchange</a></p>
         </div>
     </div>
@@ -102,7 +102,7 @@
         </table>
     </div>
     <div id="notfoundmsg" style="display: none; color: white">
-      <p><center>Sorry we couldn't find what you were looking for. <br/>If we're missing something, let us know! Or perhaps you can make this product or service available for sats?</center></p>
+      <p><center>Sorry we couldn't find what you were looking for. <br/><br/>If we're missing something, let us know! Or perhaps you can make this product or service available for sats?</center></p>
     </div>
   </div>
 
@@ -298,6 +298,8 @@
     table = document.getElementById("searchableTable"),
     trs = table.tBodies[0].getElementsByTagName("tr"),
     found_something = false;
+	  
+    document.getElementById("searchableTable").style.display = "";
     
     for (let i = 0; i < trs.length; i++) {
       const tds = trs[i].getElementsByTagName("td");
@@ -314,6 +316,7 @@
   
     if (!found_something) {
       document.getElementById("notfoundmsg").style.display = "";
+      document.getElementById("searchableTable").style.display = "none";
     } else {
       document.getElementById("notfoundmsg").style.display = "none";
     };
